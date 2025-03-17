@@ -1,22 +1,42 @@
-import React, { ReactNode, useState } from 'react';
+'use client';
+
+import React from 'react';
 
 interface CallStatusProps {
-  status: string;
-  children?: ReactNode;
+  isCallActive: boolean;
+  agentStatus: string;
+  onStartCall: () => void;
+  onEndCall: () => void;
 }
 
-const CallStatus: React.FC<CallStatusProps> = ({ status, children }) => {
+const CallStatus: React.FC<CallStatusProps> = ({
+  isCallActive,
+  agentStatus,
+  onStartCall,
+  onEndCall,
+}) => {
   return (
-    <div className="flex flex-col bg-[#121212] border border-[#2A2A2A] rounded-r-[1px] p-4 w-full lg:w-1/3">
-      <div className="mt-2">
-        <h2 className="text-xl font-semibold mb-2">Call Status</h2>
-        <p className="text-lg font-mono text-gray-400">Status: <span className="text-white text-base">{status}</span></p>
-        {/* TODO <p className="font-mono text-gray-400">Latency: <span className="text-gray-500">N/A</span></p> */}
-        {/* TODO <p className="font-mono">00:00</p> */}
+    <div className="flex flex-col items-start">
+      <div className="flex items-center gap-4 mb-4">
+        <button
+          onClick={isCallActive ? onEndCall : onStartCall}
+          className={`px-6 py-3 rounded-lg font-semibold ${
+            isCallActive
+              ? 'bg-red-500 hover:bg-red-600 text-white'
+              : 'bg-green-500 hover:bg-green-600 text-white'
+          }`}
+        >
+          {isCallActive ? 'End Training Call' : 'Start Training Call'}
+        </button>
+        <span className="text-gray-600">
+          Status: <span className="font-semibold">{agentStatus}</span>
+        </span>
       </div>
-
-      {/* Optional Children */}
-      {children}
+      {!isCallActive && (
+        <p className="text-sm text-gray-500">
+          Select a customer scenario and click "Start Training Call" to begin the simulation.
+        </p>
+      )}
     </div>
   );
 };

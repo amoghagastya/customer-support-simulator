@@ -1,59 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { UltravoxExperimentalMessageEvent } from "ultravox-client";
-import ToggleSwitch from "@/app/components/ui/Toggle";
 
 interface DebugMessagesProps {
   debugMessages: UltravoxExperimentalMessageEvent[];
 }
 
 const DebugMessages: React.FC<DebugMessagesProps> = ({ debugMessages }) => {
-  const [messages, setMessages] = useState<UltravoxExperimentalMessageEvent[]>(
-    []
-  );
-  const [showDebugMessages, setShowDebugMessages] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMessages(debugMessages);
-  }, [debugMessages]);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  const handleToggle = () => {
-    setShowDebugMessages(!showDebugMessages);
-  };
-
   return (
-    <div className="mb-4 flex flex-col max-w-[1206px] mx-auto w-full py-5 pr-[10px]">
-      <div className="flex flex-row">
-        <h2 className="text-lg font-mono mr-4">Debug View</h2>
-        <ToggleSwitch
-          id="toggleDebug"
-          isOn={showDebugMessages}
-          handleToggle={handleToggle}
-        />
+    <div>
+      <div className="flex items-center space-x-2 mb-4">
+        <label className="relative inline-flex items-center cursor-pointer">
+          <input
+            type="checkbox"
+            className="sr-only peer"
+            defaultChecked={true}
+          />
+          <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+        </label>
+        <span className="text-sm font-medium text-white">Debug View</span>
       </div>
 
-      {showDebugMessages && debugMessages && debugMessages.length > 0 && (
-        <div className="mt-4 border-b border-[#3A3B3F]">
-          <div className="h-40">
-            <div ref={scrollRef} className="h-full pr-2 scrollbar-visible">
-              {messages.map((msg, index) => (
-                <p
-                  key={index}
-                  className="text-sm font-mono text-gray-200 py-2 border-dotted border-b border-[#3A3B3F]"
-                >
-                  {msg.message.message}
-                </p>
-              ))}
-            </div>
+      <div className="font-mono text-sm text-gray-300 whitespace-pre-wrap">
+        {debugMessages.map((message, index) => (
+          <div key={index} className="mb-2">
+            {JSON.stringify(message, null, 2)}
           </div>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };
