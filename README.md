@@ -1,4 +1,3 @@
-```markdown
 # Customer Service Training Simulator
 
 An interactive training tool for customer service representatives, powered by AI. Practice handling different customer scenarios in a realistic environment.
