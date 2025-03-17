@@ -1,21 +1,71 @@
-# Ultravox API Tutorial:  Building Interactive UI with Client Tools
-This repo serves as the starting point for the [tutorial](https://docs.ultravox.ai/guides/clienttoolstutorial) from the Ultravox documentation.
+```markdown
+# Customer Service Training Simulator
 
-## Set-up
-1. Add an Ultravox API key
-  * Create a file called `.env.local`
-  * In `.env.local` add your key like this: `ULTRAVOX_API_KEY=<YOUR_KEY_HERE>`
+An interactive training tool for customer service representatives, powered by AI. Practice handling different customer scenarios in a realistic environment.
 
-## Running
-1. This repo uses `pnpm`. Installation instructions [here](https://pnpm.io/installation).
-1. Install all depedencies with `pnpm install`.
-1. Run the app with `pnpm dev`.
+## Features
+
+- Real-time voice interactions with AI customers
+- Multiple customer personas (angry customer, general inquiry)
+- Debug view for monitoring interactions
+- Natural conversation flow
+- Realistic customer behaviors and responses
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- pnpm (v9.9.0 or higher)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/amoghagastya/customer-support-simulator.git
+ ```
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+ ```
+
+3. Start the development server:
+```bash
+pnpm dev
+ ```
+
+The application will be available at http://localhost:3000
+
+## Usage
+1. Select a customer persona from the dropdown menu
+2. Click "Start Training Call" to begin the simulation
+3. Interact with the AI customer as you would in a real support scenario
+4. Use the debug view to monitor the conversation flow
+5. Click "End Call" when finished
+## Tech Stack
+- Next.js 14
+- React 18
+- TailwindCSS
+- Ultravox Client SDK
+- TypeScript
+## Development
+To run the development server:
+
+```bash
+pnpm dev
+ ```
+
+To build for production:
+
+```bash
+pnpm build
+ ```
+
+To start the production server:
 
 
-## Query Params
-| What | Parameter | Notes |
-|--------|--------|---------|
-|**Debug Logging**|`showDebugMessages=true`| Turns on some additional console logging.|
-|**Speaker Mute Toggle**|`showSpeakerMute=true`| Shows the speaker mute button.|
-|**Change Model**|`model=ultravox-70B`|Changes the model to what is specified. Note: the app will prepend `fixie-ai/` to the value.|
-|**Enable User Transcripts**|`showUserTranscripts=true`|Displays user transcripts. Otherwise, only Ultravox/agent transcripts are shown.|
+```bash
+pnpm start
+ ```
