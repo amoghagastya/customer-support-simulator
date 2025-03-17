@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
-import Image from 'next/image';
-import UVLogo from '@/public/UVHorizontal-White.svg';
 import "@/app/globals.css";
-
+import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Ultravox Demo",
   description: "Demonstration of using the Ultravox API to create a call with an AI agent.",
@@ -15,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>{children}
+      <Analytics />
+      </body>
     </html>
   )
 }
