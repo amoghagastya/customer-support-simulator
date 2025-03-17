@@ -16,27 +16,30 @@ const CallStatus: React.FC<CallStatusProps> = ({
   onEndCall,
 }) => {
   return (
-    <div className="flex flex-col items-start">
-      <div className="flex items-center gap-4 mb-4">
+    <div className="flex flex-col space-y-4">
+      <div className="flex space-x-4">
+        {/* Replace nested buttons with a single button */}
         <button
-          onClick={isCallActive ? onEndCall : onStartCall}
-          className={`px-6 py-3 rounded-lg font-semibold ${
-            isCallActive
-              ? 'bg-red-500 hover:bg-red-600 text-white'
-              : 'bg-green-500 hover:bg-green-600 text-white'
-          }`}
+          onClick={onStartCall}
+          disabled={isCallActive}
+          className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isCallActive ? 'End Training Call' : 'Start Training Call'}
+          {isCallActive ? "Call in Progress" : "Start Training Call"}
         </button>
-        <span className="text-gray-600">
-          Status: <span className="font-semibold">{agentStatus}</span>
-        </span>
+        
+        {isCallActive && (
+          <button
+            onClick={onEndCall}
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            End Call
+          </button>
+        )}
       </div>
-      {!isCallActive && (
-        <p className="text-sm text-gray-500">
-          Select a customer scenario and click "Start Training Call" to begin the simulation.
-        </p>
-      )}
+      
+      <div className="text-gray-400 text-sm">
+        Status: {agentStatus}
+      </div>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import "@/app/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
+
 export const metadata: Metadata = {
-  title: "Ultravox Demo",
-  description: "Demonstration of using the Ultravox API to create a call with an AI agent.",
+  title: "Customer Service Training Simulator",
+  description: "An interactive training tool for customer service representatives, powered by AI.",
 };
 
 export default function RootLayout({
